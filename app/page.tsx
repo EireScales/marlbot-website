@@ -7,6 +7,7 @@ import AnimatedProductCard from "@/components/AnimatedProductCard";
 import ComparisonSlider from "@/components/ComparisonSlider";
 import PaymentMarquee from "@/components/PaymentMarquee";
 import AnimatedReviews from "@/components/AnimatedReviews";
+import CardMarquee from "@/components/CardMarquee";
 
 function SafeQualityIcon() {
   const controls = useAnimation();
@@ -190,8 +191,9 @@ export default function Home() {
             <p className="text-slate-500 text-sm mb-6" style={{ lineHeight: 1.6 }}>
               Cards, crypto, and local methods globally. Checkout in seconds.
             </p>
-            <div className="flex-1 flex items-center">
+            <div className="flex-1 flex flex-col gap-3 justify-center">
               <PaymentMarquee />
+              <CardMarquee />
             </div>
           </motion.div>
 
