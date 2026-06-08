@@ -40,7 +40,7 @@ export default function Navbar() {
           {/* Desktop Navigation */}
           <div
             className="hidden md:flex items-center gap-1 rounded-2xl p-1"
-            style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.07)" }}
+            style={{ background: "rgba(0,0,0,0.04)", border: "1px solid rgba(0,0,0,0.07)" }}
           >
             {navLinks.map((link) => {
               const Icon = link.icon;
@@ -53,18 +53,18 @@ export default function Navbar() {
                     style={
                       isActive
                         ? {
-                            background: "linear-gradient(135deg, rgba(99,102,241,0.25), rgba(139,92,246,0.2))",
-                            border: "1px solid rgba(99,102,241,0.35)",
-                            color: "#fafafa",
+                            background: "linear-gradient(135deg, rgba(59,130,246,0.15), rgba(96,165,250,0.12))",
+                            border: "1px solid rgba(59,130,246,0.3)",
+                            color: "#1d4ed8",
                           }
-                        : { color: "#a1a1aa", border: "1px solid transparent" }
+                        : { color: "#64748b", border: "1px solid transparent" }
                     }
                     whileHover={
                       !isActive
                         ? {
-                            backgroundColor: "rgba(99,102,241,0.08)",
-                            borderColor: "rgba(99,102,241,0.2)",
-                            color: "#fafafa",
+                            backgroundColor: "rgba(59,130,246,0.06)",
+                            borderColor: "rgba(59,130,246,0.18)",
+                            color: "#1e40af",
                           }
                         : {}
                     }
@@ -82,18 +82,18 @@ export default function Navbar() {
             <motion.button
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
-              className="p-2 text-zinc-400 hover:text-white transition-colors"
+              className="p-2 text-slate-400 hover:text-slate-700 transition-colors"
             >
               <Search size={18} />
             </motion.button>
             <motion.button
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
-              className="p-2 text-zinc-400 hover:text-white transition-colors"
+              className="p-2 text-slate-400 hover:text-slate-700 transition-colors"
             >
               <ShoppingCart size={18} />
             </motion.button>
-            <MagneticButton className="bg-white text-black hover:bg-zinc-100 font-semibold px-5 py-2.5 rounded-xl flex items-center gap-2 text-sm transition-colors">
+            <MagneticButton className="bg-slate-900 hover:bg-slate-800 font-semibold px-5 py-2.5 rounded-xl flex items-center gap-2 text-sm transition-colors text-white">
               Client Login
               <motion.span
                 animate={{ x: [0, 3, 0] }}
@@ -106,7 +106,7 @@ export default function Navbar() {
 
           {/* Mobile Menu Button */}
           <button
-            className="md:hidden p-2 text-zinc-400"
+            className="md:hidden p-2 text-slate-500"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           >
             {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -134,11 +134,11 @@ export default function Navbar() {
                   style={
                     isActive
                       ? {
-                          background: "linear-gradient(135deg, rgba(99,102,241,0.2), rgba(139,92,246,0.15))",
-                          border: "1px solid rgba(99,102,241,0.3)",
-                          color: "#fafafa",
+                          background: "linear-gradient(135deg, rgba(59,130,246,0.12), rgba(96,165,250,0.08))",
+                          border: "1px solid rgba(59,130,246,0.25)",
+                          color: "#1d4ed8",
                         }
-                      : { color: "#a1a1aa" }
+                      : { color: "#64748b" }
                   }
                   onClick={() => setMobileMenuOpen(false)}
                 >

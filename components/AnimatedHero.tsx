@@ -9,20 +9,20 @@ export default function AnimatedHero() {
     <section className="relative overflow-hidden pt-20 pb-32">
       {/* Background */}
       <div className="absolute inset-0 grid-bg" />
-      <div className="absolute inset-0 bg-gradient-to-b from-indigo-500/5 via-transparent to-transparent" />
+      <div className="absolute inset-0 bg-gradient-to-b from-blue-500/5 via-transparent to-transparent" />
 
       {/* Floating Orbs */}
       <motion.div
-        animate={{ y: [0, -30, 0], opacity: [0.2, 0.5, 0.2] }}
+        animate={{ y: [0, -30, 0], opacity: [0.15, 0.35, 0.15] }}
         transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
         className="absolute top-20 left-10 w-72 h-72 rounded-full blur-3xl"
-        style={{ background: "rgba(99,102,241,0.15)" }}
+        style={{ background: "rgba(59,130,246,0.12)" }}
       />
       <motion.div
-        animate={{ y: [0, 30, 0], opacity: [0.15, 0.35, 0.15] }}
+        animate={{ y: [0, 30, 0], opacity: [0.1, 0.25, 0.1] }}
         transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 1 }}
         className="absolute bottom-20 right-10 w-96 h-96 rounded-full blur-3xl"
-        style={{ background: "rgba(139,92,246,0.1)" }}
+        style={{ background: "rgba(96,165,250,0.10)" }}
       />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -34,17 +34,17 @@ export default function AnimatedHero() {
             transition={{ duration: 0.6 }}
             className="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-8"
             style={{
-              background: "rgba(99,102,241,0.08)",
-              border: "1px solid rgba(99,102,241,0.2)",
+              background: "rgba(59,130,246,0.08)",
+              border: "1px solid rgba(59,130,246,0.2)",
             }}
           >
             <motion.div
               animate={{ rotate: 360 }}
               transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
             >
-              <Zap size={14} className="text-indigo-400" />
+              <Zap size={14} className="text-blue-500" />
             </motion.div>
-            <span className="text-indigo-400 text-sm font-medium tracking-wide">
+            <span className="text-blue-600 text-sm font-medium tracking-wide">
               v2.0 Now Available
             </span>
           </motion.div>
@@ -54,7 +54,7 @@ export default function AnimatedHero() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="heading-glow text-5xl md:text-7xl font-semibold text-white mb-6"
+            className="heading-glow text-5xl md:text-7xl font-semibold text-slate-900 mb-6"
           >
             Get the best{" "}
             <span className="gradient-text">bots.</span>
@@ -63,7 +63,7 @@ export default function AnimatedHero() {
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
-              className="text-indigo-400 inline-block"
+              className="text-blue-500 inline-block"
             >
               Rank up faster.
             </motion.span>
@@ -74,7 +74,7 @@ export default function AnimatedHero() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.6 }}
-            className="text-lg text-zinc-400 max-w-xl mx-auto mb-10"
+            className="text-lg text-slate-500 max-w-xl mx-auto mb-10"
             style={{ lineHeight: 1.7 }}
           >
             Advanced Rocket League AI bots built by SSL/GC players.
@@ -122,10 +122,10 @@ export default function AnimatedHero() {
                 transition={{ duration: 0.5, delay: 1.2 + index * 0.1 }}
                 className="text-center"
               >
-                <div className="text-2xl md:text-3xl font-semibold text-white mb-1 tracking-tight">
+                <div className="text-2xl md:text-3xl font-semibold text-slate-900 mb-1 tracking-tight">
                   {stat.value}
                 </div>
-                <div className="text-zinc-500 text-xs uppercase tracking-widest">{stat.label}</div>
+                <div className="text-slate-400 text-xs uppercase tracking-widest">{stat.label}</div>
               </motion.div>
             ))}
           </motion.div>

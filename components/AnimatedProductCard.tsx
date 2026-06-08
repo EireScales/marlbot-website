@@ -28,8 +28,8 @@ export default function AnimatedProductCard({
       style={
         popular
           ? {
-              border: "1px solid rgba(99,102,241,0.35)",
-              boxShadow: "0 0 40px rgba(99,102,241,0.1), inset 0 1px 0 rgba(255,255,255,0.05)",
+              border: "1px solid rgba(59,130,246,0.35)",
+              boxShadow: "0 0 40px rgba(59,130,246,0.1), inset 0 1px 0 rgba(255,255,255,0.9)",
             }
           : {}
       }
@@ -42,7 +42,7 @@ export default function AnimatedProductCard({
         >
           <span
             className="text-white text-xs font-semibold px-3 py-1 rounded-full"
-            style={{ background: "linear-gradient(135deg, #6366f1, #8b5cf6)" }}
+            style={{ background: "linear-gradient(135deg, #3b82f6, #60a5fa)" }}
           >
             BEST SELLER
           </span>
@@ -54,12 +54,11 @@ export default function AnimatedProductCard({
         className="relative h-56 overflow-hidden"
         style={{ borderRadius: "1rem 1rem 0 0" }}
       >
-        {/* Fallback background — always present, hidden behind image */}
         <div
           className="absolute inset-0"
           style={{
             background:
-              "linear-gradient(135deg, rgba(99,102,241,0.18), rgba(17,17,24,0.95))",
+              "linear-gradient(135deg, rgba(59,130,246,0.12), rgba(241,245,249,0.95))",
           }}
         />
 
@@ -79,20 +78,20 @@ export default function AnimatedProductCard({
           className="absolute inset-0 pointer-events-none"
           style={{
             background:
-              "linear-gradient(to bottom, transparent 30%, rgba(10,10,15,0.6) 65%, rgba(10,10,15,0.97) 100%)",
+              "linear-gradient(to bottom, transparent 30%, rgba(248,250,252,0.6) 65%, rgba(248,250,252,0.97) 100%)",
           }}
         />
       </div>
 
       <div className="p-6">
-        <h3 className="text-lg font-semibold text-white mb-1 tracking-tight">{name}</h3>
-        <p className="text-zinc-500 text-sm mb-4" style={{ lineHeight: 1.6 }}>
+        <h3 className="text-lg font-semibold text-slate-900 mb-1 tracking-tight">{name}</h3>
+        <p className="text-slate-500 text-sm mb-4" style={{ lineHeight: 1.6 }}>
           {description}
         </p>
 
         <div className="flex items-baseline gap-1 mb-5">
-          <span className="text-3xl font-semibold text-white tracking-tight">{price}</span>
-          <span className="text-zinc-600 text-sm">/mo</span>
+          <span className="text-3xl font-semibold text-slate-900 tracking-tight">{price}</span>
+          <span className="text-slate-400 text-sm">/mo</span>
         </div>
 
         <ul className="space-y-2.5 mb-6">
@@ -102,9 +101,9 @@ export default function AnimatedProductCard({
               initial={{ opacity: 0, x: -10 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ delay: index * 0.08 }}
-              className="flex items-center gap-2.5 text-zinc-400 text-sm"
+              className="flex items-center gap-2.5 text-slate-600 text-sm"
             >
-              <Check size={14} className="text-indigo-400 flex-shrink-0" />
+              <Check size={14} className="text-blue-500 flex-shrink-0" />
               {feature}
             </motion.li>
           ))}
@@ -117,14 +116,14 @@ export default function AnimatedProductCard({
           style={
             popular
               ? {
-                  background: "linear-gradient(135deg, #6366f1, #8b5cf6)",
+                  background: "linear-gradient(135deg, #3b82f6, #60a5fa)",
                   color: "white",
-                  boxShadow: "0 4px 20px rgba(99,102,241,0.3)",
+                  boxShadow: "0 4px 20px rgba(59,130,246,0.3)",
                 }
               : {
-                  background: "rgba(255,255,255,0.04)",
-                  color: "#fafafa",
-                  border: "1px solid rgba(255,255,255,0.08)",
+                  background: "rgba(0,0,0,0.04)",
+                  color: "#334155",
+                  border: "1px solid rgba(0,0,0,0.10)",
                 }
           }
         >

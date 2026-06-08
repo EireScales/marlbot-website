@@ -6,9 +6,9 @@ const payments = [
   { name: "Bitcoin",    color: "#f7931a", bg: "rgba(247,147,26,0.12)",  symbol: "₿"  },
   { name: "Ethereum",   color: "#627eea", bg: "rgba(98,126,234,0.12)",  symbol: "Ξ"  },
   { name: "PayPal",     color: "#009cde", bg: "rgba(0,156,222,0.12)",   symbol: "PP" },
-  { name: "Visa",       color: "#a5b4fc", bg: "rgba(165,180,252,0.10)", symbol: "VISA" },
+  { name: "Visa",       color: "#1a56db", bg: "rgba(59,130,246,0.10)",  symbol: "VISA" },
   { name: "USDT",       color: "#26a17b", bg: "rgba(38,161,123,0.12)",  symbol: "₮"  },
-  { name: "Apple Pay",  color: "#ffffff", bg: "rgba(255,255,255,0.08)", symbol: ""  },
+  { name: "Apple Pay",  color: "#0f172a", bg: "rgba(15,23,42,0.08)",    symbol: ""  },
   { name: "Google Pay", color: "#4285f4", bg: "rgba(66,133,244,0.12)",  symbol: "G"  },
   { name: "Mastercard", color: null,       bg: null,                     symbol: "MC" },
 ];
@@ -52,7 +52,7 @@ export default function PaymentMarquee() {
     <div
       className="relative overflow-hidden py-4 rounded-xl"
       style={{
-        border: "1px solid rgba(99,102,241,0.12)",
+        border: "1px solid rgba(59,130,246,0.15)",
         animation: "borderPulse 3s ease-in-out infinite",
         maskImage:
           "linear-gradient(to right, transparent, black 12%, black 88%, transparent)",
@@ -66,19 +66,19 @@ export default function PaymentMarquee() {
             key={i}
             className="flex-shrink-0 flex items-center gap-2.5 px-4 py-2.5 rounded-xl cursor-pointer"
             style={{
-              background: "rgba(255,255,255,0.03)",
-              border: "1px solid rgba(255,255,255,0.07)",
+              background: "rgba(0,0,0,0.03)",
+              border: "1px solid rgba(0,0,0,0.07)",
             }}
             whileHover={{
               y: -4,
-              background: "rgba(99,102,241,0.07)",
-              borderColor: "rgba(99,102,241,0.3)",
-              boxShadow: "0 8px 24px rgba(99,102,241,0.15)",
+              background: "rgba(59,130,246,0.06)",
+              borderColor: "rgba(59,130,246,0.25)",
+              boxShadow: "0 8px 24px rgba(59,130,246,0.12)",
               transition: { duration: 0.2 },
             }}
           >
             <PaymentIcon p={p} />
-            <span className="text-zinc-300 text-xs font-medium whitespace-nowrap">
+            <span className="text-slate-600 text-xs font-medium whitespace-nowrap">
               {p.name}
             </span>
           </motion.div>

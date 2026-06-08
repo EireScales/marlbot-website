@@ -21,12 +21,12 @@ function ReviewCard({ review }: { review: typeof reviews[0] }) {
   return (
     <div className="glass-card glass-panel p-6 mb-4 shrink-0">
       <div className="flex items-center justify-between mb-3">
-        <span className="text-gray-500 text-xs uppercase tracking-wider">{review.access}</span>
-        <span className="text-red-500 font-bold text-sm">{review.rating}/10</span>
+        <span className="text-slate-400 text-xs uppercase tracking-wider">{review.access}</span>
+        <span className="text-blue-500 font-bold text-sm">{review.rating}/10</span>
       </div>
-      <p className="text-white text-sm leading-relaxed mb-4">{review.text}</p>
-      <p className="text-gray-500 text-xs">
-        Reached: <span className="text-gray-400">{review.reached}</span>
+      <p className="text-slate-700 text-sm leading-relaxed mb-4">{review.text}</p>
+      <p className="text-slate-400 text-xs">
+        Reached: <span className="text-slate-600">{review.reached}</span>
       </p>
     </div>
   );

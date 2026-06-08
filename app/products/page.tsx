@@ -28,10 +28,10 @@ export default function ProductsPage() {
   return (
     <div className="min-h-screen pt-20 pb-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
       <div className="text-center mb-16">
-        <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
-          Our <span className="text-marl-blue">Products</span>
+        <h1 className="text-4xl md:text-5xl font-bold text-slate-900 mb-4">
+          Our <span className="text-blue-500">Products</span>
         </h1>
-        <p className="text-marl-grey-light text-lg max-w-2xl mx-auto">
+        <p className="text-slate-500 text-lg max-w-2xl mx-auto">
           Choose the perfect marlbot package for your Rocket League journey.
           All purchases include lifetime updates.
         </p>
@@ -45,7 +45,7 @@ export default function ProductsPage() {
 
       {/* FAQ Section */}
       <section className="max-w-3xl mx-auto">
-        <h2 className="text-2xl font-bold text-white mb-8 text-center">Frequently Asked Questions</h2>
+        <h2 className="text-2xl font-bold text-slate-900 mb-8 text-center">Frequently Asked Questions</h2>
         <div className="space-y-4">
           {[
             {
@@ -66,8 +66,8 @@ export default function ProductsPage() {
             },
           ].map((faq, i) => (
             <div key={i} className="glass-panel p-6">
-              <h3 className="text-white font-semibold mb-2">{faq.q}</h3>
-              <p className="text-marl-grey-light text-sm">{faq.a}</p>
+              <h3 className="text-slate-900 font-semibold mb-2">{faq.q}</h3>
+              <p className="text-slate-500 text-sm">{faq.a}</p>
             </div>
           ))}
         </div>
