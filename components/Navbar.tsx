@@ -24,40 +24,60 @@ export default function Navbar() {
       transition={{ duration: 0.6, ease: "easeOut" }}
       className="sticky top-4 z-50 mx-4"
     >
-      <div className="glass-panel border border-white/10 rounded-2xl px-6 py-3">
+      <div className="glass-panel px-6 py-3">
         <div className="flex items-center justify-between">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-3 group">
             <motion.div
               whileHover={{ rotate: 180 }}
               transition={{ duration: 0.6 }}
-              className="w-10 h-10 bg-gradient-to-br from-blue-500 to-blue-700 rounded-xl flex items-center justify-center shadow-lg shadow-blue-500/30"
+              className="w-10 h-10 rounded-xl flex items-center justify-center shadow-lg"
+              style={{
+                background: "linear-gradient(135deg, #6366f1, #7c3aed)",
+                boxShadow: "0 4px 20px rgba(99,102,241,0.35)",
+              }}
             >
               <span className="text-white font-bold text-lg">M</span>
             </motion.div>
-            <span className="text-xl font-bold text-white tracking-tight">
+            <span className="text-xl font-semibold text-white tracking-tight">
               marlbot
             </span>
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-1 bg-white/5 rounded-xl p-1">
+          <div
+            className="hidden md:flex items-center gap-1 rounded-2xl p-1"
+            style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.07)" }}
+          >
             {navLinks.map((link) => {
               const Icon = link.icon;
               const isActive = pathname === link.href;
               return (
                 <Link key={link.href} href={link.href}>
                   <motion.div
-                    whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
-                    className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-all ${
+                    className="flex items-center gap-2 px-4 py-2 rounded-xl transition-all duration-200 text-sm font-medium"
+                    style={
                       isActive
-                        ? "bg-white/10 text-white"
-                        : "text-gray-400 hover:text-white"
-                    }`}
+                        ? {
+                            background: "linear-gradient(135deg, rgba(99,102,241,0.25), rgba(139,92,246,0.2))",
+                            border: "1px solid rgba(99,102,241,0.35)",
+                            color: "#fafafa",
+                          }
+                        : { color: "#a1a1aa", border: "1px solid transparent" }
+                    }
+                    whileHover={
+                      !isActive
+                        ? {
+                            backgroundColor: "rgba(99,102,241,0.08)",
+                            borderColor: "rgba(99,102,241,0.2)",
+                            color: "#fafafa",
+                          }
+                        : {}
+                    }
                   >
-                    <Icon size={18} />
-                    <span className="font-medium">{link.label}</span>
+                    <Icon size={16} />
+                    {link.label}
                   </motion.div>
                 </Link>
               );
@@ -69,18 +89,18 @@ export default function Navbar() {
             <motion.button
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
-              className="p-2 text-gray-400 hover:text-white transition-colors"
+              className="p-2 text-zinc-400 hover:text-white transition-colors"
             >
-              <Search size={20} />
+              <Search size={18} />
             </motion.button>
             <motion.button
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
-              className="p-2 text-gray-400 hover:text-white transition-colors"
+              className="p-2 text-zinc-400 hover:text-white transition-colors"
             >
-              <ShoppingCart size={20} />
+              <ShoppingCart size={18} />
             </motion.button>
-            <MagneticButton className="bg-white text-black hover:bg-gray-200 font-semibold px-5 py-2.5 rounded-xl flex items-center gap-2">
+            <MagneticButton className="bg-white text-black hover:bg-zinc-100 font-semibold px-5 py-2.5 rounded-xl flex items-center gap-2 text-sm transition-colors">
               Client Login
               <motion.span
                 animate={{ x: [0, 3, 0] }}
@@ -93,7 +113,7 @@ export default function Navbar() {
 
           {/* Mobile Menu Button */}
           <button
-            className="md:hidden p-2 text-gray-400"
+            className="md:hidden p-2 text-zinc-400"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           >
             {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -108,18 +128,28 @@ export default function Navbar() {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            className="md:hidden mt-2 glass-panel border border-white/10 rounded-2xl p-4"
+            className="md:hidden mt-2 glass-panel p-4"
           >
             {navLinks.map((link) => {
               const Icon = link.icon;
+              const isActive = pathname === link.href;
               return (
                 <Link
                   key={link.href}
                   href={link.href}
-                  className="flex items-center gap-3 px-4 py-3 rounded-xl text-gray-400 hover:text-white hover:bg-white/5 transition-all"
+                  className="flex items-center gap-3 px-4 py-3 rounded-xl transition-all text-sm font-medium"
+                  style={
+                    isActive
+                      ? {
+                          background: "linear-gradient(135deg, rgba(99,102,241,0.2), rgba(139,92,246,0.15))",
+                          border: "1px solid rgba(99,102,241,0.3)",
+                          color: "#fafafa",
+                        }
+                      : { color: "#a1a1aa" }
+                  }
                   onClick={() => setMobileMenuOpen(false)}
                 >
-                  <Icon size={20} />
+                  <Icon size={18} />
                   {link.label}
                 </Link>
               );

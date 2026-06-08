@@ -3,33 +3,84 @@
 import { motion } from "framer-motion";
 
 const payments = [
-  { name: "Bitcoin", icon: "₿" },
-  { name: "Ethereum", icon: "Ξ" },
-  { name: "PayPal", icon: "PP" },
-  { name: "Visa", icon: "V" },
-  { name: "Mastercard", icon: "M" },
-  { name: "Apple Pay", icon: "A" },
-  { name: "Google Pay", icon: "G" },
-  { name: "USDT", icon: "T" },
+  { name: "Bitcoin",    color: "#f7931a", bg: "rgba(247,147,26,0.12)",  symbol: "₿"  },
+  { name: "Ethereum",   color: "#627eea", bg: "rgba(98,126,234,0.12)",  symbol: "Ξ"  },
+  { name: "PayPal",     color: "#009cde", bg: "rgba(0,156,222,0.12)",   symbol: "PP" },
+  { name: "Visa",       color: "#a5b4fc", bg: "rgba(165,180,252,0.10)", symbol: "VISA" },
+  { name: "USDT",       color: "#26a17b", bg: "rgba(38,161,123,0.12)",  symbol: "₮"  },
+  { name: "Apple Pay",  color: "#ffffff", bg: "rgba(255,255,255,0.08)", symbol: ""  },
+  { name: "Google Pay", color: "#4285f4", bg: "rgba(66,133,244,0.12)",  symbol: "G"  },
+  { name: "Mastercard", color: null,       bg: null,                     symbol: "MC" },
 ];
 
-export default function PaymentMarquee() {
+function PaymentIcon({ p }: { p: typeof payments[0] }) {
+  if (p.name === "Mastercard") {
+    return (
+      <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+        <circle cx="15" cy="20" r="12" fill="#eb001b" opacity="0.9" />
+        <circle cx="25" cy="20" r="12" fill="#f79e1b" opacity="0.9" />
+        <path
+          d="M20 10.4a12 12 0 0 1 0 19.2A12 12 0 0 1 20 10.4z"
+          fill="#ff5f00"
+        />
+      </svg>
+    );
+  }
   return (
-    <div className="relative overflow-hidden py-8">
-      <div className="absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-gray-950 to-transparent z-10" />
-      <div className="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-gray-950 to-transparent z-10" />
+    <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+      <circle cx="20" cy="20" r="20" fill={p.bg!} />
+      <text
+        x="20"
+        y="26"
+        textAnchor="middle"
+        fontSize={p.symbol.length > 2 ? "9" : "16"}
+        fontWeight="700"
+        fill={p.color!}
+        fontFamily="system-ui, sans-serif"
+        letterSpacing={p.symbol.length > 2 ? "0.5" : "0"}
+      >
+        {p.symbol}
+      </text>
+    </svg>
+  );
+}
 
-      <div className="marquee-track">
-        {[...payments, ...payments].map((payment, index) => (
+export default function PaymentMarquee() {
+  const doubled = [...payments, ...payments];
+
+  return (
+    <div
+      className="relative overflow-hidden py-4 rounded-xl"
+      style={{
+        border: "1px solid rgba(99,102,241,0.12)",
+        animation: "borderPulse 3s ease-in-out infinite",
+        maskImage:
+          "linear-gradient(to right, transparent, black 12%, black 88%, transparent)",
+        WebkitMaskImage:
+          "linear-gradient(to right, transparent, black 12%, black 88%, transparent)",
+      }}
+    >
+      <div className="marquee-track gap-2">
+        {doubled.map((p, i) => (
           <motion.div
-            key={index}
-            className="flex-shrink-0 mx-4 glass-panel px-6 py-3 flex items-center gap-3 hover:border-blue-500/50 transition-colors cursor-pointer"
-            whileHover={{ scale: 1.05 }}
+            key={i}
+            className="flex-shrink-0 flex items-center gap-2.5 px-4 py-2.5 rounded-xl cursor-pointer"
+            style={{
+              background: "rgba(255,255,255,0.03)",
+              border: "1px solid rgba(255,255,255,0.07)",
+            }}
+            whileHover={{
+              y: -4,
+              background: "rgba(99,102,241,0.07)",
+              borderColor: "rgba(99,102,241,0.3)",
+              boxShadow: "0 8px 24px rgba(99,102,241,0.15)",
+              transition: { duration: 0.2 },
+            }}
           >
-            <div className="w-10 h-10 rounded-lg bg-blue-500/20 flex items-center justify-center text-blue-400 font-bold text-lg">
-              {payment.icon}
-            </div>
-            <span className="text-white font-medium whitespace-nowrap">{payment.name}</span>
+            <PaymentIcon p={p} />
+            <span className="text-zinc-300 text-xs font-medium whitespace-nowrap">
+              {p.name}
+            </span>
           </motion.div>
         ))}
       </div>
