@@ -88,15 +88,17 @@ export default function AnimatedHero() {
             transition={{ duration: 0.8, delay: 0.8 }}
             className="flex flex-col sm:flex-row items-center justify-center gap-4"
           >
-            <MagneticButton className="btn-primary flex items-center gap-2 text-base">
-              Get Access
-              <motion.span
-                animate={{ x: [0, 5, 0] }}
-                transition={{ duration: 1.5, repeat: Infinity }}
-              >
-                <ArrowRight size={18} />
-              </motion.span>
-            </MagneticButton>
+            <a href="https://discord.gg/8ATPhSTKjG" target="_blank" rel="noopener noreferrer">
+              <MagneticButton className="btn-primary flex items-center gap-2 text-base">
+                Get Access
+                <motion.span
+                  animate={{ x: [0, 5, 0] }}
+                  transition={{ duration: 1.5, repeat: Infinity }}
+                >
+                  <ArrowRight size={18} />
+                </motion.span>
+              </MagneticButton>
+            </a>
 
             <MagneticButton className="btn-secondary flex items-center gap-2 text-base">
               Watch Demo
