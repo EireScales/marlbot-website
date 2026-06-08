@@ -43,6 +43,28 @@ export default function ProductsPage() {
         ))}
       </div>
 
+      {/* Logo Marquee */}
+      <div
+        className="relative overflow-hidden py-6 mb-20 rounded-2xl"
+        style={{
+          background: "linear-gradient(135deg, rgba(219,234,254,0.6) 0%, rgba(191,219,254,0.4) 100%)",
+          border: "1px solid rgba(59,130,246,0.2)",
+          maskImage: "linear-gradient(to right, transparent, black 8%, black 92%, transparent)",
+          WebkitMaskImage: "linear-gradient(to right, transparent, black 8%, black 92%, transparent)",
+        }}
+      >
+        <div className="marquee-track-right gap-8">
+          {[...Array(16)].map((_, i) => (
+            <img
+              key={i}
+              src="/images/rllogo.jpg"
+              alt="marlbot"
+              className="h-12 w-auto rounded-lg object-contain flex-shrink-0 opacity-80"
+            />
+          ))}
+        </div>
+      </div>
+
       {/* FAQ Section */}
       <section className="max-w-3xl mx-auto">
         <h2 className="text-2xl font-bold text-slate-900 mb-8 text-center">Frequently Asked Questions</h2>

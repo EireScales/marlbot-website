@@ -5,7 +5,7 @@ export default function Footer() {
       style={{ borderColor: "rgba(0,0,0,0.08)", background: "#f1f5f9" }}
     >
       <a
-        href="https://discord.gg/marlbot"
+        href="https://discord.gg/8ATPhSTKjG"
         target="_blank"
         rel="noopener noreferrer"
         className="inline-flex items-center gap-3 px-7 py-3.5 rounded-xl font-semibold text-sm text-white transition-all duration-200 hover:brightness-110"
