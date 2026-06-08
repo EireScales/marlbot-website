@@ -59,14 +59,14 @@ export default function Home() {
             name="marlbot Lite"
             description="Perfect for beginners. Basic mechanics and positioning training."
             price="$9.99"
-            image="/images/lite-bot.png"
+            image="/images/lite-bot.jpg"
             features={["Basic mechanics", "Casual mode", "Standard training", "Email support"]}
           />
           <AnimatedProductCard
             name="marlbot Pro"
             description="Advanced AI with machine learning. Rank up faster."
             price="$29.99"
-            image="/images/pro-bot.png"
+            image="/images/pro-bot.jpg"
             features={["Advanced mechanics", "Ranked ready", "Custom routines", "AI learning", "Discord support"]}
             popular
           />
@@ -74,7 +74,7 @@ export default function Home() {
             name="marlbot SSL"
             description="Professional grade. SSL-level gameplay simulation."
             price="$49.99"
-            image="/images/ssl-bot.png"
+            image="/images/ssl-bot.jpg"
             features={["SSL mechanics", "Tournament mode", "Team coordination", "Priority support", "Custom bot creation"]}
           />
         </div>

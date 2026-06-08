@@ -2,7 +2,6 @@
 
 import { motion } from "framer-motion";
 import { Check, ShoppingCart } from "lucide-react";
-import Image from "next/image";
 
 interface ProductCardProps {
   name: string;
@@ -25,7 +24,7 @@ export default function AnimatedProductCard({
     <motion.div
       whileHover={{ y: -8, scale: 1.01 }}
       transition={{ duration: 0.3 }}
-      className="relative glass-panel overflow-hidden"
+      className="relative glass-panel overflow-hidden group"
       style={
         popular
           ? {
@@ -52,39 +51,35 @@ export default function AnimatedProductCard({
 
       {/* Image area */}
       <div
-        className="relative h-64 overflow-hidden"
+        className="relative h-56 overflow-hidden"
         style={{ borderRadius: "1rem 1rem 0 0" }}
       >
-        {image ? (
-          <motion.div
-            whileHover={{ scale: 1.06 }}
-            transition={{ duration: 0.6, ease: "easeOut" }}
-            className="absolute inset-0"
-          >
-            <Image
-              src={image}
-              alt={name}
-              fill
-              className="object-cover"
-              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-            />
-          </motion.div>
-        ) : (
-          <div
-            className="absolute inset-0 flex items-center justify-center"
-            style={{
-              background:
-                "linear-gradient(135deg, rgba(99,102,241,0.15), rgba(17,17,24,0.9))",
+        {/* Fallback background — always present, hidden behind image */}
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              "linear-gradient(135deg, rgba(99,102,241,0.18), rgba(17,17,24,0.95))",
+          }}
+        />
+
+        {image && (
+          <img
+            src={image}
+            alt={name}
+            className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+            onError={(e) => {
+              e.currentTarget.style.display = "none";
             }}
           />
         )}
 
-        {/* Bottom gradient overlay for text readability */}
+        {/* Gradient overlay */}
         <div
           className="absolute inset-0 pointer-events-none"
           style={{
             background:
-              "linear-gradient(to bottom, transparent 35%, rgba(10,10,15,0.75) 70%, rgba(10,10,15,0.98) 100%)",
+              "linear-gradient(to bottom, transparent 30%, rgba(10,10,15,0.6) 65%, rgba(10,10,15,0.97) 100%)",
           }}
         />
       </div>
