@@ -56,24 +56,24 @@ export default function Home() {
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           <AnimatedProductCard
-            name="marlbot Lite"
+            name="Marlbot Lite"
             description="Perfect for beginners. Basic mechanics and positioning training."
-            price="$9.99"
+            price="$19.99"
             image="/images/lite-bot.jpg"
             features={["Basic mechanics", "Casual mode", "Standard training", "Email support"]}
           />
           <AnimatedProductCard
-            name="marlbot Pro"
+            name="Marlbot Pro"
             description="Advanced AI with machine learning. Rank up faster."
-            price="$29.99"
+            price="$39.99"
             image="/images/pro-bot.jpg"
             features={["Advanced mechanics", "Ranked ready", "Custom routines", "AI learning", "Discord support"]}
             popular
           />
           <AnimatedProductCard
-            name="marlbot SSL"
+            name="Marlbot SSL"
             description="Professional grade. SSL-level gameplay simulation."
-            price="$49.99"
+            price="$79.99"
             image="/images/ssl-bot.jpg"
             features={["SSL mechanics", "Tournament mode", "Team coordination", "Priority support", "Custom bot creation"]}
           />
