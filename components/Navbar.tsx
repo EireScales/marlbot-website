@@ -1,21 +1,35 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { Home, ShoppingCart, Star, Package, Menu, X, Search } from "lucide-react";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import MagneticButton from "./MagneticButton";
+import { useCart } from "@/context/CartContext";
 
 export default function Navbar() {
   const pathname = usePathname();
+  const router = useRouter();
+  const { items } = useCart();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
+
+  const cartCount = items.reduce((sum, i) => sum + i.qty, 0);
 
   const navLinks = [
     { href: "/", label: "Home", icon: Home },
     { href: "/products", label: "Products", icon: Package },
     { href: "/reviews", label: "Reviews", icon: Star },
   ];
+
+  const handleSearch = (e: React.FormEvent) => {
+    e.preventDefault();
+    setSearchOpen(false);
+    setSearchQuery("");
+    router.push("/products");
+  };
 
   return (
     <motion.nav
@@ -79,20 +93,74 @@ export default function Navbar() {
 
           {/* Right Side */}
           <div className="hidden md:flex items-center gap-3">
-            <motion.button
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.9 }}
-              className="p-2 text-slate-400 hover:text-slate-700 transition-colors"
-            >
-              <Search size={18} />
-            </motion.button>
-            <motion.button
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.9 }}
-              className="p-2 text-slate-400 hover:text-slate-700 transition-colors"
-            >
-              <ShoppingCart size={18} />
-            </motion.button>
+            {/* Search */}
+            <AnimatePresence mode="wait">
+              {searchOpen ? (
+                <motion.form
+                  key="search-form"
+                  initial={{ opacity: 0, width: 0 }}
+                  animate={{ opacity: 1, width: 200 }}
+                  exit={{ opacity: 0, width: 0 }}
+                  transition={{ duration: 0.2 }}
+                  onSubmit={handleSearch}
+                  className="flex items-center gap-1 overflow-hidden"
+                  style={{
+                    background: "rgba(0,0,0,0.04)",
+                    border: "1px solid rgba(59,130,246,0.25)",
+                    borderRadius: "0.75rem",
+                    padding: "4px 8px",
+                  }}
+                >
+                  <Search size={14} className="text-slate-400 flex-shrink-0" />
+                  <input
+                    autoFocus
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    placeholder="Search products..."
+                    className="flex-1 bg-transparent text-sm text-slate-700 placeholder-slate-400 outline-none min-w-0"
+                  />
+                  <button
+                    type="button"
+                    onClick={() => { setSearchOpen(false); setSearchQuery(""); }}
+                    className="text-slate-400 hover:text-slate-600 flex-shrink-0"
+                  >
+                    <X size={14} />
+                  </button>
+                </motion.form>
+              ) : (
+                <motion.button
+                  key="search-icon"
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.9 }}
+                  onClick={() => setSearchOpen(true)}
+                  className="p-2 text-slate-400 hover:text-slate-700 transition-colors"
+                >
+                  <Search size={18} />
+                </motion.button>
+              )}
+            </AnimatePresence>
+
+            {/* Cart */}
+            <Link href="/cart">
+              <motion.div
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+                className="relative p-2 text-slate-400 hover:text-slate-700 transition-colors cursor-pointer"
+              >
+                <ShoppingCart size={18} />
+                {cartCount > 0 && (
+                  <motion.span
+                    initial={{ scale: 0 }}
+                    animate={{ scale: 1 }}
+                    className="absolute -top-0.5 -right-0.5 w-4 h-4 rounded-full text-white text-[10px] font-bold flex items-center justify-center"
+                    style={{ background: "linear-gradient(135deg, #3b82f6, #60a5fa)" }}
+                  >
+                    {cartCount}
+                  </motion.span>
+                )}
+              </motion.div>
+            </Link>
+
             <MagneticButton className="bg-slate-900 hover:bg-slate-800 font-semibold px-5 py-2.5 rounded-xl flex items-center gap-2 text-sm transition-colors text-white">
               Client Login
               <motion.span
@@ -147,6 +215,14 @@ export default function Navbar() {
                 </Link>
               );
             })}
+            <Link
+              href="/cart"
+              className="flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-slate-600"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              <ShoppingCart size={18} />
+              Cart {cartCount > 0 && `(${cartCount})`}
+            </Link>
           </motion.div>
         )}
       </AnimatePresence>

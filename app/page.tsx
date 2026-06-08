@@ -9,6 +9,163 @@ import PaymentMarquee from "@/components/PaymentMarquee";
 import AnimatedReviews from "@/components/AnimatedReviews";
 import CardMarquee from "@/components/CardMarquee";
 
+// Shared wiggle variant for the three bento boxes
+const wiggleVariants = {
+  idle: { rotate: 0, scale: 1 },
+  hover: {
+    rotate: [0, -1.5, 1.5, -1, 1, 0],
+    scale: 1.015,
+    transition: {
+      rotate: {
+        duration: 0.45,
+        repeat: Infinity,
+        repeatDelay: 1.2,
+        ease: "easeInOut" as const,
+      },
+      scale: { duration: 0.15 },
+    },
+  },
+};
+
+function InstantDeliveryFlow() {
+  const CYCLE = 3;
+
+  const nodes = [
+    { Icon: Lock, label: "Order" },
+    { Icon: Zap, label: "Process" },
+    { Icon: Check, label: "Done" },
+  ];
+
+  // Each entry: glow times + shadow keyframes for the 3-second cycle
+  const nodeAnims = [
+    {
+      times: [0, 0.15, 0.28, 1],
+      shadow: [
+        "0 0 18px rgba(59,130,246,0.85)",
+        "0 0 18px rgba(59,130,246,0.85)",
+        "0 0 0px rgba(59,130,246,0)",
+        "0 0 0px rgba(59,130,246,0)",
+      ],
+    },
+    {
+      times: [0, 0.39, 0.4, 0.55, 0.68, 1],
+      shadow: [
+        "0 0 0px rgba(59,130,246,0)",
+        "0 0 0px rgba(59,130,246,0)",
+        "0 0 18px rgba(59,130,246,0.85)",
+        "0 0 18px rgba(59,130,246,0.85)",
+        "0 0 0px rgba(59,130,246,0)",
+        "0 0 0px rgba(59,130,246,0)",
+      ],
+    },
+    {
+      times: [0, 0.79, 0.8, 0.92, 1],
+      shadow: [
+        "0 0 0px rgba(59,130,246,0)",
+        "0 0 0px rgba(59,130,246,0)",
+        "0 0 18px rgba(59,130,246,0.85)",
+        "0 0 18px rgba(59,130,246,0.85)",
+        "0 0 0px rgba(59,130,246,0)",
+      ],
+    },
+  ];
+
+  // Connector light-sweep: [connector 0, connector 1]
+  const connAnims = [
+    {
+      times: [0, 0.14, 0.4, 0.45, 0.55, 1],
+      scaleX: [0, 0, 1, 1, 1, 1],
+      opacity: [0, 0, 1, 1, 0, 0],
+    },
+    {
+      times: [0, 0.54, 0.8, 0.85, 0.93, 1],
+      scaleX: [0, 0, 1, 1, 1, 1],
+      opacity: [0, 0, 1, 1, 0, 0],
+    },
+  ];
+
+  return (
+    <div className="relative flex items-center">
+      {/* Traveling light dot — moves Order→Process→Done in a loop */}
+      <motion.div
+        className="absolute rounded-full pointer-events-none"
+        style={{
+          width: 20,
+          height: 20,
+          top: 12,
+          left: -10,
+          zIndex: 20,
+          background:
+            "radial-gradient(circle, #fff 0%, rgba(147,197,253,0.95) 30%, rgba(59,130,246,0.5) 60%, transparent 75%)",
+          boxShadow: "0 0 8px rgba(59,130,246,0.7), 0 0 16px rgba(59,130,246,0.3)",
+        }}
+        animate={{ x: [22, 22, 114, 114, 206, 206] }}
+        transition={{
+          duration: CYCLE,
+          repeat: Infinity,
+          repeatType: "loop",
+          times: [0, 0.15, 0.4, 0.55, 0.8, 1],
+          ease: "easeInOut",
+        }}
+      />
+
+      {nodes.map(({ Icon, label }, i) => (
+        <div key={i} className="flex items-center">
+          <div className="flex flex-col items-center gap-1.5">
+            <motion.div
+              className="w-11 h-11 rounded-full flex items-center justify-center"
+              animate={{ boxShadow: nodeAnims[i].shadow }}
+              transition={{
+                duration: CYCLE,
+                repeat: Infinity,
+                times: nodeAnims[i].times,
+                ease: "easeInOut",
+              }}
+              style={{
+                background: "rgba(0,0,0,0.04)",
+                border: "1px solid rgba(0,0,0,0.08)",
+              }}
+            >
+              <Icon size={16} className="text-slate-400" />
+            </motion.div>
+            <span className="text-xs text-slate-400">{label}</span>
+          </div>
+          {i < 2 && (
+            <div className="relative h-px w-10 mx-1 mb-5">
+              <div
+                className="absolute inset-0"
+                style={{ background: "rgba(0,0,0,0.08)" }}
+              />
+              {/* Light sweep along the connector */}
+              <motion.div
+                className="absolute left-0 origin-left"
+                style={{
+                  height: 2,
+                  top: -0.5,
+                  right: 0,
+                  background:
+                    "linear-gradient(to right, rgba(147,197,253,1), rgba(59,130,246,0.3))",
+                  boxShadow: "0 0 4px rgba(59,130,246,0.5)",
+                }}
+                animate={{
+                  scaleX: connAnims[i].scaleX,
+                  opacity: connAnims[i].opacity,
+                }}
+                transition={{
+                  duration: CYCLE,
+                  repeat: Infinity,
+                  times: connAnims[i].times,
+                  ease: "easeOut",
+                }}
+              />
+            </div>
+          )}
+        </div>
+      ))}
+    </div>
+  );
+}
+
 function SafeQualityIcon() {
   const controls = useAnimation();
   return (
@@ -110,60 +267,27 @@ export default function Home() {
       <section className="py-32 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
 
-          {/* Instant Delivery */}
-          <motion.div whileHover={{ scale: 1.01 }} className="glass-panel p-8">
+          {/* Instant Delivery — wiggle + traveling light */}
+          <motion.div
+            variants={wiggleVariants}
+            initial="idle"
+            whileHover="hover"
+            className="glass-panel p-8"
+          >
             <h3 className="text-base font-semibold text-blue-600 mb-2 tracking-tight">
               Instant Delivery
             </h3>
             <p className="text-slate-500 text-sm mb-8" style={{ lineHeight: 1.6 }}>
               Automated dispatch system. Get your license keys immediately after purchase.
             </p>
-            <div className="flex items-center gap-0">
-              {[
-                { Icon: Lock,  label: "Order",   active: false },
-                { Icon: Zap,   label: "Process", active: false },
-                { Icon: Check, label: "Done",    active: true  },
-              ].map(({ Icon, label, active }, i) => (
-                <div key={i} className="flex items-center">
-                  <div className="flex flex-col items-center gap-1.5">
-                    <motion.div
-                      whileHover={{
-                        boxShadow: "0 0 20px rgba(59,130,246,0.4)",
-                        borderColor: "rgba(59,130,246,0.5)",
-                      }}
-                      className="w-11 h-11 rounded-full flex items-center justify-center transition-all"
-                      style={{
-                        background: active ? "rgba(59,130,246,0.12)" : "rgba(0,0,0,0.04)",
-                        border: active
-                          ? "1px solid rgba(59,130,246,0.35)"
-                          : "1px solid rgba(0,0,0,0.08)",
-                      }}
-                    >
-                      <Icon size={16} className={active ? "text-blue-500" : "text-slate-400"} />
-                    </motion.div>
-                    <span className="text-xs text-slate-400">{label}</span>
-                  </div>
-                  {i < 2 && (
-                    <motion.div
-                      initial={{ scaleX: 0 }}
-                      whileInView={{ scaleX: 1 }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 0.7, delay: 0.3 + i * 0.25, ease: "easeOut" }}
-                      className="h-px w-10 mx-1 origin-left mb-5"
-                      style={{
-                        background:
-                          "linear-gradient(to right, rgba(59,130,246,0.5), rgba(59,130,246,0.1))",
-                      }}
-                    />
-                  )}
-                </div>
-              ))}
-            </div>
+            <InstantDeliveryFlow />
           </motion.div>
 
-          {/* Safe & Quality */}
+          {/* Safe & Quality — wiggle */}
           <motion.div
-            whileHover={{ scale: 1.01 }}
+            variants={wiggleVariants}
+            initial="idle"
+            whileHover="hover"
             className="glass-panel p-8 flex flex-col items-center justify-center text-center"
           >
             <div className="relative mb-6">
@@ -179,7 +303,7 @@ export default function Home() {
             </p>
           </motion.div>
 
-          {/* Secure Payments — spans 2 rows */}
+          {/* Secure Payments — spans 2 rows (no wiggle, not requested) */}
           <motion.div
             whileHover={{ scale: 1.01 }}
             className="glass-panel p-7 lg:row-span-2 overflow-hidden flex flex-col"
@@ -197,9 +321,11 @@ export default function Home() {
             </div>
           </motion.div>
 
-          {/* Instant Setup — spans 2 cols, has grid bg */}
+          {/* Designed for Simplicity — spans 2 cols, wiggle */}
           <motion.div
-            whileHover={{ scale: 1.01 }}
+            variants={wiggleVariants}
+            initial="idle"
+            whileHover="hover"
             className="glass-panel lg:col-span-2 relative overflow-hidden p-10"
           >
             {/* Subtle grid overlay */}

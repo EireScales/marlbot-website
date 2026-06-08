@@ -2,6 +2,8 @@
 
 import { motion } from "framer-motion";
 import { Check, ShoppingCart } from "lucide-react";
+import { useState } from "react";
+import { useCart } from "@/context/CartContext";
 
 interface ProductCardProps {
   name: string;
@@ -20,6 +22,15 @@ export default function AnimatedProductCard({
   popular = false,
   image,
 }: ProductCardProps) {
+  const { addItem } = useCart();
+  const [added, setAdded] = useState(false);
+
+  const handleAddToCart = () => {
+    addItem({ name, price });
+    setAdded(true);
+    setTimeout(() => setAdded(false), 1500);
+  };
+
   return (
     <motion.div
       whileHover={{ y: -8, scale: 1.01 }}
@@ -73,7 +84,6 @@ export default function AnimatedProductCard({
           />
         )}
 
-        {/* Gradient overlay */}
         <div
           className="absolute inset-0 pointer-events-none"
           style={{
@@ -112,9 +122,16 @@ export default function AnimatedProductCard({
         <motion.button
           whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.98 }}
+          onClick={handleAddToCart}
           className="w-full flex items-center justify-center gap-2 py-3 rounded-xl font-semibold text-sm transition-all duration-200"
           style={
-            popular
+            added
+              ? {
+                  background: "linear-gradient(135deg, #22c55e, #4ade80)",
+                  color: "white",
+                  boxShadow: "0 4px 20px rgba(34,197,94,0.3)",
+                }
+              : popular
               ? {
                   background: "linear-gradient(135deg, #3b82f6, #60a5fa)",
                   color: "white",
@@ -127,8 +144,17 @@ export default function AnimatedProductCard({
                 }
           }
         >
-          <ShoppingCart size={16} />
-          Buy Now
+          {added ? (
+            <>
+              <Check size={16} />
+              Added!
+            </>
+          ) : (
+            <>
+              <ShoppingCart size={16} />
+              Add to Cart
+            </>
+          )}
         </motion.button>
       </div>
     </motion.div>
