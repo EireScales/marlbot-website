@@ -58,7 +58,7 @@ export default function AnimatedProductCard({
           className="absolute inset-0"
           style={{
             background:
-              "linear-gradient(135deg, rgba(59,130,246,0.12), rgba(241,245,249,0.95))",
+              "linear-gradient(135deg, rgba(59,130,246,0.18), rgba(191,219,254,0.9))",
           }}
         />
 
@@ -78,7 +78,7 @@ export default function AnimatedProductCard({
           className="absolute inset-0 pointer-events-none"
           style={{
             background:
-              "linear-gradient(to bottom, transparent 30%, rgba(248,250,252,0.6) 65%, rgba(248,250,252,0.97) 100%)",
+              "linear-gradient(to bottom, transparent 30%, rgba(191,219,254,0.6) 65%, rgba(191,219,254,0.95) 100%)",
           }}
         />
       </div>

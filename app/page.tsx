@@ -25,7 +25,7 @@ function SafeQualityIcon() {
       />
       <div
         className="absolute inset-[2px] rounded-full flex items-center justify-center text-2xl z-10"
-        style={{ background: "rgba(248,250,252,0.97)" }}
+        style={{ background: "rgba(219,234,254,0.97)" }}
       >
         🛡️
       </div>
