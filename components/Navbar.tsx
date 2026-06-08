@@ -27,21 +27,14 @@ export default function Navbar() {
       <div className="glass-panel px-6 py-3">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-3 group">
-            <motion.div
-              whileHover={{ rotate: 180 }}
-              transition={{ duration: 0.6 }}
-              className="w-10 h-10 rounded-xl flex items-center justify-center shadow-lg"
-              style={{
-                background: "linear-gradient(135deg, #6366f1, #7c3aed)",
-                boxShadow: "0 4px 20px rgba(99,102,241,0.35)",
-              }}
-            >
-              <span className="text-white font-bold text-lg">M</span>
-            </motion.div>
-            <span className="text-xl font-semibold text-white tracking-tight">
-              marlbot
-            </span>
+          <Link href="/">
+            <motion.img
+              src="/images/rllogo.jpg"
+              alt="marlbot logo"
+              whileHover={{ scale: 1.05 }}
+              transition={{ duration: 0.2 }}
+              className="h-10 w-auto rounded-lg object-contain"
+            />
           </Link>
 
           {/* Desktop Navigation */}

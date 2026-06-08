@@ -17,54 +17,44 @@ const reviews = [
   { id: 12, name: "Customer", access: "1 DAY ACCESS", rating: 9, text: "One day pass and I was amazed at the quality. Now sitting at GC3.", reached: "GC3" },
 ];
 
-const containerVariants = {
-  hidden: { opacity: 0 },
-  show: {
-    opacity: 1,
-    transition: { staggerChildren: 0.1 },
-  },
-};
+function ReviewCard({ review }: { review: typeof reviews[0] }) {
+  return (
+    <div className="glass-card glass-panel p-6 mb-4 shrink-0">
+      <div className="flex items-center justify-between mb-3">
+        <span className="text-gray-500 text-xs uppercase tracking-wider">{review.access}</span>
+        <span className="text-red-500 font-bold text-sm">{review.rating}/10</span>
+      </div>
+      <p className="text-white text-sm leading-relaxed mb-4">{review.text}</p>
+      <p className="text-gray-500 text-xs">
+        Reached: <span className="text-gray-400">{review.reached}</span>
+      </p>
+    </div>
+  );
+}
 
-const itemVariants = {
-  hidden: { opacity: 0, y: 20 },
-  show: { opacity: 1, y: 0 },
-};
+function Column({ items, direction }: { items: typeof reviews; direction: "up" | "down" }) {
+  const doubled = [...items, ...items];
+  return (
+    <div className="overflow-hidden h-[520px]">
+      <motion.div
+        animate={{ y: direction === "up" ? ["0%", "-50%"] : ["-50%", "0%"] }}
+        transition={{ duration: 28, repeat: Infinity, ease: "linear", repeatType: "loop" }}
+        className="flex flex-col"
+      >
+        {doubled.map((review, i) => (
+          <ReviewCard key={`${review.id}-${i}`} review={review} />
+        ))}
+      </motion.div>
+    </div>
+  );
+}
 
 export default function AnimatedReviews() {
   return (
-    <motion.div
-      variants={containerVariants}
-      initial="hidden"
-      whileInView="show"
-      viewport={{ once: true }}
-      className="columns-1 md:columns-2 lg:columns-3 gap-4 space-y-4"
-    >
-      {reviews.map((review) => (
-        <motion.div
-          key={review.id}
-          variants={itemVariants}
-          whileHover={{ y: -5, transition: { duration: 0.2 } }}
-          className="glass-card glass-panel p-6 break-inside-avoid"
-        >
-          {/* Top row: access type + rating */}
-          <div className="flex items-center justify-between mb-3">
-            <span className="text-gray-500 text-xs uppercase tracking-wider">
-              {review.access}
-            </span>
-            <span className="text-red-500 font-bold text-sm">
-              {review.rating}/10
-            </span>
-          </div>
-
-          {/* Review text */}
-          <p className="text-white text-sm leading-relaxed mb-4">{review.text}</p>
-
-          {/* Bottom: reached rank */}
-          <p className="text-gray-500 text-xs">
-            Reached: <span className="text-gray-400">{review.reached}</span>
-          </p>
-        </motion.div>
-      ))}
-    </motion.div>
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      <Column items={reviews.slice(0, 4)} direction="up" />
+      <Column items={reviews.slice(4, 8)} direction="down" />
+      <Column items={reviews.slice(8, 12)} direction="up" />
+    </div>
   );
 }
