@@ -1,2 +1,3 @@
-:HL["/_next/static/chunks/13zqtna7ya0z0.css","style"]
-0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"/_not-found","param":null,"prefetchHints":0,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}}}},"staleTime":300,"buildId":"xq0CXXSO9iI5xuoq55NDA"}
+:HL["/_next/static/chunks/35vxcmwwqw0hq.css","style"]
+:HL["/images/rllogo.jpg","image"]
+0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"/_not-found","param":null,"prefetchHints":0,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}}}},"staleTime":300,"buildId":"_huQF6NdrX-kUfVF8hRL4"}
