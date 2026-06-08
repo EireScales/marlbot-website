@@ -50,29 +50,26 @@ export default function ComparisonSlider() {
         onTouchEnd={handleMouseUp}
       >
         {/* After (right side) */}
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-900/30 to-gray-900">
-          <div className="absolute inset-0 flex items-center justify-center">
-            <div className="text-center">
-              <div className="text-6xl mb-4">🚀</div>
-              <p className="text-white font-bold text-xl">SSL Level Gameplay</p>
-              <p className="text-blue-400">Perfect positioning & mechanics</p>
-            </div>
-          </div>
-          <div className="absolute inset-0 bg-[linear-gradient(rgba(59,130,246,0.1)_1px,transparent_1px),linear-gradient(90deg,rgba(59,130,246,0.1)_1px,transparent_1px)] bg-[size:32px_32px]" />
+        <div className="absolute inset-0">
+          <img
+            src="/images/after.jpg"
+            alt="After marlbot"
+            className="w-full h-full object-cover"
+            draggable={false}
+          />
         </div>
 
         {/* Before (left side, clipped) */}
         <div
-          className="absolute inset-0 bg-gradient-to-br from-gray-800 to-gray-900"
+          className="absolute inset-0"
           style={{ clipPath: `inset(0 ${100 - sliderPosition}% 0 0)` }}
         >
-          <div className="absolute inset-0 flex items-center justify-center">
-            <div className="text-center">
-              <div className="text-6xl mb-4">😅</div>
-              <p className="text-gray-400 font-bold text-xl">Struggling in Plat</p>
-              <p className="text-gray-500">Inconsistent mechanics</p>
-            </div>
-          </div>
+          <img
+            src="/images/before.jpg"
+            alt="Before marlbot"
+            className="w-full h-full object-cover"
+            draggable={false}
+          />
         </div>
 
         {/* Slider Line */}
