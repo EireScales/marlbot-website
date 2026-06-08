@@ -3,23 +3,23 @@ import ProductCard from "@/components/ProductCard";
 export default function ProductsPage() {
   const products = [
     {
-      name: "marlbot Lite",
+      name: "Marlbot Lite",
       description: "Entry-level bot for casual players",
-      price: "$9.99",
+      price: "$19.99",
       features: ["Basic mechanics training", "Casual match simulation", "5 bot personalities", "Email support"],
       popular: false,
     },
     {
-      name: "marlbot Pro",
+      name: "Marlbot Pro",
       description: "Advanced AI for serious players",
-      price: "$29.99",
+      price: "$39.99",
       features: ["Advanced mechanics", "Ranked match simulation", "15 bot personalities", "AI learning adaptation", "Discord support"],
       popular: true,
     },
     {
-      name: "marlbot SSL",
+      name: "Marlbot SSL",
       description: "Professional grade bot system",
-      price: "$49.99",
+      price: "$79.99",
       features: ["SSL-level mechanics", "Tournament mode", "Unlimited personalities", "Team coordination", "Priority 24/7 support", "Custom bot creation"],
       popular: false,
     },
