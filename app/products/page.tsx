@@ -1,0 +1,77 @@
+import ProductCard from "@/components/ProductCard";
+
+export default function ProductsPage() {
+  const products = [
+    {
+      name: "marlbot Lite",
+      description: "Entry-level bot for casual players",
+      price: "$9.99",
+      features: ["Basic mechanics training", "Casual match simulation", "5 bot personalities", "Email support"],
+      popular: false,
+    },
+    {
+      name: "marlbot Pro",
+      description: "Advanced AI for serious players",
+      price: "$29.99",
+      features: ["Advanced mechanics", "Ranked match simulation", "15 bot personalities", "AI learning adaptation", "Discord support"],
+      popular: true,
+    },
+    {
+      name: "marlbot SSL",
+      description: "Professional grade bot system",
+      price: "$49.99",
+      features: ["SSL-level mechanics", "Tournament mode", "Unlimited personalities", "Team coordination", "Priority 24/7 support", "Custom bot creation"],
+      popular: false,
+    },
+  ];
+
+  return (
+    <div className="min-h-screen pt-20 pb-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+      <div className="text-center mb-16">
+        <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
+          Our <span className="text-marl-blue">Products</span>
+        </h1>
+        <p className="text-marl-grey-light text-lg max-w-2xl mx-auto">
+          Choose the perfect marlbot package for your Rocket League journey.
+          All purchases include lifetime updates.
+        </p>
+      </div>
+
+      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
+        {products.map((product) => (
+          <ProductCard key={product.name} {...product} />
+        ))}
+      </div>
+
+      {/* FAQ Section */}
+      <section className="max-w-3xl mx-auto">
+        <h2 className="text-2xl font-bold text-white mb-8 text-center">Frequently Asked Questions</h2>
+        <div className="space-y-4">
+          {[
+            {
+              q: "Is marlbot detectable by Psyonix?",
+              a: "marlbot runs locally and simulates human input patterns. We maintain strict safety protocols to minimize detection risk.",
+            },
+            {
+              q: "Can I use this in ranked matches?",
+              a: "marlbot Pro and SSL versions support ranked simulation. We recommend using training modes for skill development.",
+            },
+            {
+              q: "What platforms are supported?",
+              a: "Currently marlbot supports PC (Steam/Epic). Console support is in development.",
+            },
+            {
+              q: "Do you offer refunds?",
+              a: "Yes, we offer a 7-day money-back guarantee if you're not satisfied with your purchase.",
+            },
+          ].map((faq, i) => (
+            <div key={i} className="glass-panel p-6">
+              <h3 className="text-white font-semibold mb-2">{faq.q}</h3>
+              <p className="text-marl-grey-light text-sm">{faq.a}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+    </div>
+  );
+}
